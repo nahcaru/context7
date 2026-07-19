@@ -1,0 +1,14 @@
+{
+  "setup": [
+    "node -e \"let f='pnpm-workspace.yaml',fs=require('fs');fs.writeFileSync(f,fs.readFileSync(f,'utf8').replace(/set this to true or false/g,'false'))\"",
+    "npx -y pnpm install --no-frozen-lockfile",
+    "npx -y pnpm --filter \"@upstash/context7-mcp...\" run build"
+  ],
+  "command": "node",
+  "args": [
+    "packages/mcp/dist/index.js",
+    "--transport",
+    "stdio"
+  ],
+  "env": {}
+}
