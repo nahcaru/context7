@@ -1,6 +1,6 @@
 {
   "setup": [
-    "node -e \"let f='pnpm-workspace.yaml',fs=require('fs');fs.writeFileSync(f,fs.readFileSync(f,'utf8').replace(/set this to true or false/g,'false'))\"",
+    "node -e \"let f='pnpm-workspace.yaml',fs=require('fs');let s=fs.readFileSync(f,'utf8').replace(/set this to true or false/g,'false');for (const p of ['@google/genai','protobufjs']) if (!s.includes(p)) s=s.replace(/allowBuilds:\\n/, 'allowBuilds:\\n  \\u0027'+p+'\\u0027: false\\n');fs.writeFileSync(f,s)\"",
     "npx -y pnpm install --no-frozen-lockfile",
     "npx -y pnpm --filter \"@upstash/context7-mcp...\" run build"
   ],
